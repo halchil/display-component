@@ -1,10 +1,11 @@
 # Display Component
 
-Next.js + Docker + Nginx の構成でHello Worldを表示するプロジェクトです。
+Next.js + Docker + Nginx + FullCalendar の構成でカレンダー表示を行うプロジェクトです。
 
 ## 構成
 
 - **フロントエンド**: Next.js (React)
+- **カレンダー**: FullCalendar
 - **Webサーバー**: Nginx（リバースプロキシ）
 - **コンテナ**: Docker / Docker Compose
 
@@ -14,8 +15,10 @@ Next.js + Docker + Nginx の構成でHello Worldを表示するプロジェク�
 display-component/
 ├── frontend/              # Next.jsアプリケーション
 │   ├── app/              # Next.js App Router
+│   │   ├── components/   # Reactコンポーネント
+│   │   │   └── Calendar.tsx  # FullCalendarコンポーネント
 │   │   ├── layout.tsx    # レイアウトコンポーネント
-│   │   └── page.tsx      # Hello Worldページ
+│   │   └── page.tsx      # メインページ
 │   ├── Dockerfile        # Next.js用Dockerfile
 │   ├── next.config.js    # Next.js設定
 │   ├── package.json      # 依存関係
@@ -41,7 +44,15 @@ docker compose up -d --build
 http://localhost:8080
 ```
 
-美しいグラデーション背景に「Hello World!」が表示されます。
+美しいグラデーション背景に「Hello World!」とFullCalendarによるインタラクティブなカレンダーが表示されます。
+
+### カレンダー機能
+
+- 📅 月・週・日の表示切り替え
+- 🎯 日付クリックでイベント選択
+- 📝 サンプルイベント表示（ミーティング、ランチなど）
+- 🎨 カスタムスタイリング
+- 🔄 ドラッグ＆ドロップ対応
 
 ### 3. コンテナの停止
 
@@ -117,10 +128,37 @@ docker compose up -d --build
 
 - **Next.js**: 14.2.5
 - **React**: 18.3.1
+- **FullCalendar**: 6.1.10
+  - @fullcalendar/react
+  - @fullcalendar/daygrid
+  - @fullcalendar/timegrid
+  - @fullcalendar/interaction
 - **TypeScript**: 5.x
 - **Node.js**: 20 (Alpine)
 - **Nginx**: latest (Alpine)
 - **Docker Compose**: 3.8
+
+## カレンダーの機能詳細
+
+### 表示モード
+
+- **月表示**: 月全体のカレンダービュー
+- **週表示**: 週単位の詳細ビュー
+- **日表示**: 1日の詳細スケジュール
+
+### インタラクション
+
+- 日付クリック：コンソールに日付を出力
+- イベントクリック：イベント詳細をアラート表示
+- ドラッグ＆ドロップ：イベントの移動が可能
+
+### サンプルイベント
+
+プロジェクトには以下のサンプルイベントが含まれています：
+- ミーティング（本日 10:00-11:00）
+- ランチ（本日 12:00-13:00）
+- プロジェクトレビュー（明日 14:00-16:00）
+- チーム会議（明後日 9:00-10:30）
 
 ## ライセンス
 
